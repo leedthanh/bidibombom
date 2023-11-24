@@ -6,7 +6,7 @@ from pathlib import Path
 
 
 st.set_page_config(
-    page_title = 'Heart Attack Risk Prediction',
+    page_title = 'Heart Failure Risk Prediction',
     layout = 'centered'
 )
 url = "https://raw.githubusercontent.com/leedthanh/api/main/heart.csv"
@@ -14,11 +14,11 @@ url = "https://raw.githubusercontent.com/leedthanh/api/main/heart.csv"
 def run() :
     dataset_heart_risk = pd.read_csv(url)
 
-    st.title('Heart Risk Prediction Exploratory Data Analysis')
+    st.title('Heart Failure Prediction Exploratory Data Analysis')
 
     st.subheader('Data Source')
     st.write('https://www.kaggle.com/datasets/fedesoriano/heart-failure-prediction')
-
+    st.write('A credit to Md Yousuf Reja and Maria Parra')
     
     st.markdown('---')
 
@@ -36,7 +36,15 @@ def run() :
 
     st.pyplot(fig_scatter)
 
-    
+    st.markdown('---')
+    st.write('### Heart Disease Frequency for Ages')
+    fig_frequency, ax = plt.subplots(figsize=(20, 8))
+    pd.crosstab(dataset_heart_risk.Age, dataset_heart_risk.HeartDisease).plot(kind="bar", ax=ax)  # Corrected variable name 'df' to 'dataset_heart_risk'
+    ax.set_title('Heart Disease Frequency for Ages')
+    ax.set_xlabel('Age')
+    ax.set_ylabel('Frequency')
+    st.pyplot(fig_frequency)
+
     st.markdown('---')
 
     st.write('### Numerical Data Histogram')
@@ -46,7 +54,8 @@ def run() :
              'RestingBP = resting blood pressure')
     
     hist_choice = st.selectbox('Select column : ', ('Age', 'Cholesterol', 'RestingBP', 'FastingBS', 
-                                                'MaxHR'
+                                                'MaxHR','HeartDisease','RestingECG','ExerciseAngina',
+                                                'Oldpeak','ST_Slope','Sex','ChestPainType'
                                             ))
     fig_one = plt.figure(figsize=(15,5))
     sns.histplot(x = dataset_heart_risk[hist_choice], bins=30, kde = True)

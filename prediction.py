@@ -85,6 +85,8 @@ def run():
             st.success("Disclaimer I am not a doctor.  Go get a check up")
       
             st.balloons()
-    
+            
+    st.write("Disclaimer: The results of this assessment are based on a machine learning model using logistic regression and are not a substitute for professional medical advice. Consult with a healthcare professional for accurate and personalized guidance.")
+
 if __name__ == "__main__":
     run()
