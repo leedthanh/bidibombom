@@ -63,12 +63,6 @@ def run() :
     sns.heatmap(dataset_heart_risk[numeric_column].corr(), cmap="YlGnBu", annot=True) 
     st.pyplot(fig_two)
 
-    st.markdown('---')
-
-    st.write('### EDA Finding')
-    st.write('1. ')
-    st.write('2. ')
-    st.write('3. ')
 
 if __name__ == '__main__':
     run()

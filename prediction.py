@@ -68,7 +68,8 @@ def run():
         input_data_scaled = scaler.transform(input_data)
 
         # Make prediction
-        prediction = model.predict(input_data_scaled)
+        prediction = model.predict(input_data)
+        st.write('your input form',input_data)
 
         # Display the result
         st.write('## Prediction Result')
@@ -86,9 +87,6 @@ def run():
             st.success("Disclaimer I am not a doctor.  Go get a check up")
       
             st.balloons()
-
-    st.markdown()
-
     
 if __name__ == "__main__":
     run()
