@@ -65,11 +65,9 @@ def run():
                                 ExerciseAngina_N, ExerciseAngina_Y]])
 
         # Scale the input data using the same scaler
-        input_data_scaled = scaler.transform(input_data)
 
         # Make prediction
         prediction = model.predict(input_data)
-        st.write('your input form',input_data)
 
         # Display the result
         st.write('## Prediction Result')
