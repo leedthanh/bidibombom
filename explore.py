@@ -24,6 +24,7 @@ def run() :
 
     st.write('### Scatter Plot for Heart Disease Visualization')
     st.write('Red points represent individuals with heart disease, blue points represent those without.')
+    st.set_option('deprecation.showPyplotGlobalUse', False)
 
     fig_scatter = plt.figure(figsize=(10, 6))
     plt.scatter(x=dataset_heart_risk.Age[dataset_heart_risk.HeartDisease == 1], 
@@ -38,7 +39,7 @@ def run() :
 
     st.markdown('---')
     st.write('### Heart Disease Frequency for Ages')
-    fig_frequency, ax = plt.subplots(figsize=(20, 8))
+    fig_frequency, ax = plt.subplots(figsize=(10, 8))
     pd.crosstab(dataset_heart_risk.Age, dataset_heart_risk.HeartDisease).plot(kind="bar", ax=ax)  # Corrected variable name 'df' to 'dataset_heart_risk'
     ax.set_title('Heart Disease Frequency for Ages')
     ax.set_xlabel('Age')
