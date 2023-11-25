@@ -13,18 +13,18 @@ url = "https://raw.githubusercontent.com/leedthanh/api/main/heart.csv"
 
 def run() :
     dataset_heart_risk = pd.read_csv(url)
+    st.set_option('deprecation.showPyplotGlobalUse', False)
 
     st.title('Heart Failure Prediction Exploratory Data Analysis')
 
     st.subheader('Data Source')
     st.write('https://www.kaggle.com/datasets/fedesoriano/heart-failure-prediction')
-    st.write('A credit to Md Yousuf Reja and Maria Parra')
+    st.write('Credit to Md Yousuf Reja and Maria Parra')
     
     st.markdown('---')
 
     st.write('### Scatter Plot for Heart Disease Visualization')
     st.write('Red points represent individuals with heart disease, blue points represent those without.')
-    st.set_option('deprecation.showPyplotGlobalUse', False)
 
     fig_scatter = plt.figure(figsize=(10, 6))
     plt.scatter(x=dataset_heart_risk.Age[dataset_heart_risk.HeartDisease == 1], 
@@ -39,9 +39,8 @@ def run() :
 
     st.markdown('---')
     st.write('### Heart Disease Frequency for Ages')
-    fig_frequency, ax = plt.subplots(figsize=(10, 8))
-    pd.crosstab(dataset_heart_risk.Age, dataset_heart_risk.HeartDisease).plot(kind="bar", ax=ax)  # Corrected variable name 'df' to 'dataset_heart_risk'
-    ax.set_title('Heart Disease Frequency for Ages')
+    fig_frequency, ax = plt.subplots(figsize=(20, 10))
+    pd.crosstab(dataset_heart_risk.Age, dataset_heart_risk.HeartDisease).plot(kind="bar", ax=ax)  
     ax.set_xlabel('Age')
     ax.set_ylabel('Frequency')
     st.pyplot(fig_frequency)
@@ -58,13 +57,12 @@ def run() :
                                                 'MaxHR','HeartDisease','RestingECG','ExerciseAngina',
                                                 'Oldpeak','ST_Slope','Sex','ChestPainType'
                                             ))
-    fig_one = plt.figure(figsize=(15,5))
-    sns.histplot(x = dataset_heart_risk[hist_choice], bins=30, kde = True)
+    fig_one = plt.figure(figsize=(20,10))
+    sns.histplot(x = dataset_heart_risk[hist_choice], bins=20, kde = True)
     st.pyplot(fig_one)
 
     st.markdown('---')
 
-    # membuat heatmap correlation= antar data numerik
     numeric_column = ['Age', 'Cholesterol', 'RestingBP', 'FastingBS', 
                         'FastingBS', 'MaxHR']
     
