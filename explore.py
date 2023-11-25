@@ -13,7 +13,6 @@ url = "https://raw.githubusercontent.com/leedthanh/api/main/heart.csv"
 
 def run() :
     dataset_heart_risk = pd.read_csv(url)
-    st.set_option('deprecation.showPyplotGlobalUse', False)
 
     st.title('Heart Failure Prediction Exploratory Data Analysis')
 
@@ -39,7 +38,7 @@ def run() :
 
     st.markdown('---')
     st.write('### Heart Disease Frequency for Ages')
-    fig_frequency, ax = plt.subplots(figsize=(20, 10))
+    fig_frequency, ax = plt.subplots(figsize=(10, 6))
     pd.crosstab(dataset_heart_risk.Age, dataset_heart_risk.HeartDisease).plot(kind="bar", ax=ax)  
     ax.set_xlabel('Age')
     ax.set_ylabel('Frequency')
@@ -57,7 +56,7 @@ def run() :
                                                 'MaxHR','HeartDisease','RestingECG','ExerciseAngina',
                                                 'Oldpeak','ST_Slope','Sex','ChestPainType'
                                             ))
-    fig_one = plt.figure(figsize=(20,10))
+    fig_one = plt.figure(figsize=(10,6))
     sns.histplot(x = dataset_heart_risk[hist_choice], bins=20, kde = True)
     st.pyplot(fig_one)
 
@@ -66,11 +65,11 @@ def run() :
     numeric_column = ['Age', 'Cholesterol', 'RestingBP', 'FastingBS', 
                         'FastingBS', 'MaxHR']
     
+
     st.write('### Numerical Data Heatmap Correlation')
-    fig_two = plt.figure(figsize=(20,20))
+    fig_two = plt.figure(figsize=(15,15))
     sns.heatmap(dataset_heart_risk[numeric_column].corr(), cmap="YlGnBu", annot=True) 
     st.pyplot(fig_two)
-
 
 if __name__ == '__main__':
     run()
