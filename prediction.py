@@ -5,13 +5,13 @@ import pandas as pd
 from sklearn.preprocessing import StandardScaler
 
 # Load the Random Forest model and scaler
-model = jb.load('random_forest_model.pkl')
-scaler = jb.load('scaler.pkl')
-
+model = jb.load('machine_learning.pkl')
+# model = jb.load('random_forest_model.pkl')
+scaler = jb.load('scaler1.pkl')
 # Streamlit app
 def run():
     with st.form('patient_form'):
-        st.write('# BidiBomBom App')
+        st.write('# BidiBomBom App credit to Yousuf Reja and Maria Parra ')
         
         # Get input from the user
         Age = st.slider("Age", min_value=20, max_value=80, value=40)
